@@ -1,23 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../Components/Header/Header';
 import './Documents.css'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Buttons from '../../Components/Buttons.js/Buttons';
+import { useNavigate } from 'react-router-dom';
 
 function Documents() {
 
+    const [panDoc, setPanDoc] = useState(null);
+    const [sigDoc, setSigDoc] = useState(null);
+    const navigate = useNavigate();
+
     const nextScreen = () => {
+        if(panDoc && sigDoc)
+            navigate('/declaration-screen')
+        
+        else{
+
+            if(!panDoc) alert('Please submit PAN Card image')
+
+            if(!sigDoc) alert('Please submit Signature image')
 
 
-
+        }
+        
     }
 
     const uploadSignature = (e) => {
-        alert('sig')
+        const file = e.target.files[0];
+
+        if(checkFileSize(file)){
+            uploadFile(file, "signature");
+        }
+
+        setSigDoc(file);
     }
 
-    const uploadPanCard = () => {
-        alert('pan')
+    const uploadPanCard = (e) => {
+        const file = e.target.files[0];
+
+        if(checkFileSize(file)){
+            uploadFile(file, "pan_card");
+
+        }
+        setPanDoc(e.target.files[0]);
+    }
+
+    function checkFileSize(file){
+
+        if (file.size / (1024 * 1024) > 2) {   // file size greater than 2 mb
+            alert('File size is too large !')
+            return false;
+        }
+
+        return true;
+    }
+
+    function uploadFile(file, name){
+
+        const reader =  new FileReader();
+        reader.onloadend = () => {
+            localStorage.setItem(name, reader.result);
+        }
+
+        reader.readAsDataURL(file);
+
     }
 
     return (
@@ -62,7 +109,7 @@ function Documents() {
 
                     </div>
 
-                    <div className='pancard_upload' onClick={(e) => uploadPanCard(e)}>
+                    <div className='pancard_upload'>
                         <CancelIcon sx={{
                             color: '#01AA7B',
                             height: '15.5px',
@@ -76,6 +123,9 @@ function Documents() {
                             width: '70%',
                             backgroundColor: '#CDD5DF'
                         }}>
+
+                            <input onChange={(e) => uploadPanCard(e)} accept='image/*' type="file" className='input' />
+
                         </div>
 
                     </div>
@@ -132,8 +182,7 @@ function Documents() {
 
                     </div>
 
-                    <div onClick={(e) => uploadSignature(e)} 
-                        className='pancard_upload signature_upload'>
+                    <div className='pancard_upload signature_upload'>
                         <CancelIcon sx={{
                             color: '#01AA7B',
                             height: '15.5px',
@@ -147,6 +196,9 @@ function Documents() {
                             width: '70%',
                             backgroundColor: '#CDD5DF'
                         }}>
+                            
+                            <input onChange={(e) => uploadSignature(e)} accept='image/*' type="file" className='input' />
+
                         </div>
 
                     </div>
