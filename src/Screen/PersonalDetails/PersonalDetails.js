@@ -6,6 +6,7 @@ import RadioButtons from '../../Components/RadioButtons/RadioButtons';
 import { martialStatus } from '../../Data/MartialStatus';
 import Header from '../../Components/Header/Header';
 import { annualIncome } from '../../Data/AnnualIncome';
+import { useNavigate } from 'react-router-dom';
 
 
 function PersonalDetails() {
@@ -14,13 +15,22 @@ function PersonalDetails() {
     const [userData, setUserData] = useState({
         father_name : '',
         mother_name : '',
-        martial_status : '',
-        annual_income : ''
+        martial_status : 'Single',
+        annual_income : 'Below 1 Lakh'
+    })
+
+    const [error, setError] = useState({
+        father_name : false,
+        mother_name : false,
+        emailRes : false
+
     })
 
     const [email, setEmail] = useState('');
 
     const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
+    const navigate = useNavigate();
 
     const handleInputs = (e) => {
         let name = e.target.name;
@@ -44,6 +54,37 @@ function PersonalDetails() {
 
     const handleRadioButton = (e) => {
         setRadioButtonVal(e.currentTarget.value);
+    }
+
+    const nextScreen = (e) => {
+        
+        const isValidate = validation(userData);
+
+        if(!isValidate)
+            return ;
+
+        navigate('/documents')
+
+    }
+
+    const validation = ({father_name, mother_name}) => {
+
+        father_name = father_name === '' ? true : false;
+        mother_name = mother_name === '' ? true : false;
+
+        let emailRes = email;
+
+        emailRes = emailRes === '' ? true : false;
+
+        setError({father_name, mother_name, emailRes});
+
+        if (!father_name && !mother_name && !emailRes)
+            return true;
+        
+
+
+        return false;
+
     }
     
 
@@ -97,11 +138,11 @@ function PersonalDetails() {
                     }}
                     label="Enter father’s name here"
                     className='textfield-border'
+                    error = {error.father_name}
                     size={isSmallScreen ? 'small' : 'medium'}
                     value={userData.father_name}
                     name="father_name"
                     onChange={(e) => handleInputs(e)}
-                    // error={error.first_name}
                     variant="outlined" />
 
                 <span style={{
@@ -122,12 +163,11 @@ function PersonalDetails() {
                     }}
                     label="Enter mother’s name here"
                     className='textfield-border'
-                    // disabled={loading}
                     size={isSmallScreen ? 'small' : 'medium'}
                     value={userData.mother_name}
                     name="mother_name"
+                    error = {error.mother_name}
                     onChange={(e) => handleInputs(e)}
-                    // error={error.first_name}
                     variant="outlined" />
 
                 <span style={{
@@ -148,12 +188,11 @@ function PersonalDetails() {
                     }}
                     label="Email"
                     className='textfield-border'
-                    // disabled={loading}
                     size={isSmallScreen ? 'small' : 'medium'}
                     value={email + radioButtonVal}
                     name="email"
                     onChange={(e) => handleInputs(e)}
-                    // error={error.first_name}
+                    error={error.emailRes}
                     variant="outlined" />
 
                 <span style={{
@@ -229,6 +268,7 @@ function PersonalDetails() {
                 <Button 
                     variant="contained"  
                     className='complete_kyc'
+                    onClick={(e) => nextScreen(e)}
                     sx = {{
                         ':hover': {
                             background : '#052F5F', 

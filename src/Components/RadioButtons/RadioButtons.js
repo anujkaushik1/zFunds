@@ -41,7 +41,9 @@ function RadioButtons(props) {
                 
             >
                 {props.data.map((obj, idx) => (
-                    <FormControlLabel style={{color : '#052F5F'}} key={idx} onChange = {(e) => handleRadioButtons(e)} value={obj.value} control={<Radio />} label= {obj.label} />
+                    <FormControlLabel style={{color : '#052F5F'}} key={idx} 
+                      onChange = {(e) => handleRadioButtons(e)} value={obj.value}
+                      control={<Radio />} label= {obj.label} />
                 ))}
                 
             </RadioGroup>
