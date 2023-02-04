@@ -4,6 +4,9 @@ import Switch from '@mui/material/Switch';
 import './DeclarationScreen.css'
 import Buttons from '../../Components/Buttons/Buttons';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
+
 
 
 
@@ -16,6 +19,7 @@ function DeclarationScreen() {
     });
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSwitchButtons = (e) => {
 
@@ -31,6 +35,7 @@ function DeclarationScreen() {
         let {indian_citizen, indian_tax, polically_exposed} = switchValues;
 
         if(indian_tax && indian_citizen && polically_exposed){  
+            dispatch(addDeclarationDetails(switchValues));
             navigate('/review-screen');
         }
 
