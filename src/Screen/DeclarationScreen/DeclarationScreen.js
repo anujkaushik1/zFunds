@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
 
-
 function DeclarationScreen() {
 
     const [switchValues, setSwitchValues] = useState({

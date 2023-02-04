@@ -12,6 +12,8 @@ const ConfirmDetails = () => {
     const [panDoc, setPanDoc] = useState(null);
     const [sigDoc, setSigDoc] = useState(null);
 
+    const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
+    const declarationDetailsReducer = useSelector(state => state.declarationDetailsReducer);
 
     const uploadSignature = (e) => {
         const file = e.target.files[0];
@@ -108,27 +110,27 @@ const ConfirmDetails = () => {
                     <h2>KYC Details</h2>
                     <div>
                         <h3>Email</h3>
-                        <p>examplemail@example.com</p>
+                        <p>{personalDetailsReducer.data.email}</p>
                     </div>
                     <div className='row-container'>
                         <div className='col-container'>
                             <div>
                                 <h3>Martial Status</h3>
-                                <p>Unmarried</p>
+                                <p>{personalDetailsReducer.data.martial_status}</p>
                             </div>
                             <div>
                                 <h3>Father's Name</h3>
-                                <p>DummyF Name</p>
+                                <p>{personalDetailsReducer.data.father_name}</p>
                             </div>
                         </div>
                         <div className='col-container'>
                             <div>
                                 <h3>Annual Income</h3>
-                                <p>Below 1 Lakh</p>
+                                <p>{personalDetailsReducer.data.annual_income}</p>
                             </div>
                             <div>
                                 <h3>Mother's Name</h3>
-                                <p>DummyM Name</p>
+                                <p>{personalDetailsReducer.data.mother_name}</p>
                             </div>
                         </div>
                     </div>
