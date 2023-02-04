@@ -1,0 +1,9 @@
+.complete_kyc:hover{
+    background-color: '#32547C';
+}
+.home_button{
+    background-color:  '#FFFDFD';
+    position: absolute;
+    top : calc(50% - 38.5px);
+    left : calc(50% - 115px);
+}

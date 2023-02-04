@@ -17,7 +17,7 @@ function Navbar() {
                  elevation={0} 
                  position="static" 
                  sx={{ height: '55.59px', background : '#FFFFFF'}}>
-                    <Toolbar style={{width : '100vw'}}>
+                    <Toolbar className='navbar_toolbar'>
                         <div 
                           style={{
                                 height : '100%', 
@@ -25,7 +25,7 @@ function Navbar() {
                                 width : '3vw' ,
                                 display : 'flex' ,
                                 justifyContent : 'center',
-                                cursor : 'pointer'
+                                cursor : 'pointer',
                              }}>
                             <ArrowBackIosIcon 
                                 className='navbar_arrowback'
@@ -72,9 +72,9 @@ function Navbar() {
                                 display : 'flex',
                                 alignItems : 'center',
                                 height : '100%',
-                                width : '20vw',
+                                width : 'fit-content',
                                 position : 'relative',
-                                left : '2rem'
+                                left : '0'
                             }}>
                             <SearchIcon 
                                 className='navbar_search'

@@ -2,6 +2,7 @@ import { Button } from '@mui/material'
 import React from 'react'
 import './Home.css'
 import { Link, useNavigate } from 'react-router-dom';
+import Header from '../../Components/Header/Header';
 
 function Home() {
     const navigate = useNavigate();
@@ -12,15 +13,10 @@ function Home() {
 
   return (
     <div className='main'>
+
+      <Header label = ""/>
         
-        <div style={{
-            backgroundColor : '#FFFDFD',
-            display : 'flex', 
-            overflow : 'hidden',
-            justifyContent : 'center',
-            alignItems: 'center',
-            height : '80vh'
-            }}>
+        <div className='home_button'>
             
             <Button 
                 variant="contained"  
