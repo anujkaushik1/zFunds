@@ -13,7 +13,7 @@ function Documents() {
 
     const nextScreen = () => {
         if(panDoc && sigDoc)
-            navigate('/declaration-screen')
+            navigate('/declaration')
         
         else{
 

@@ -8,8 +8,6 @@ import { useDispatch } from 'react-redux';
 import { addDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
 
 
-
-
 function DeclarationScreen() {
 
     const [switchValues, setSwitchValues] = useState({
@@ -36,7 +34,7 @@ function DeclarationScreen() {
 
         if(indian_tax && indian_citizen && polically_exposed){  
             dispatch(addDeclarationDetails(switchValues));
-            navigate('/review-screen');
+            navigate('/confirm-details');
         }
 
         else{

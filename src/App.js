@@ -10,6 +10,8 @@ import { combineReducers, createStore } from "redux";
 import rootReducer from "./Redux/reducers/rootReducer";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { Provider } from "react-redux";
+import ConfirmDetails from "./Screen/ConfirmDetails/ConfirmDetails";
+
 
 const reduxStore = createStore(rootReducer, composeWithDevTools());
 
@@ -24,7 +26,8 @@ function App() {
             <Route path="/home" element = {<Home/>}> </Route>
             <Route path="/personal-details" element = {<PersonalDetails/>} ></Route>
             <Route path="/documents" element = {<Documents/>} ></Route>
-            <Route path="/declaration-screen" element = {<DeclarationScreen/>} ></Route>
+            <Route path="/declaration" element = {<DeclarationScreen/>} ></Route>
+            <Route path="/confirm-details" element = {<ConfirmDetails/>} ></Route>
           </Routes>
         </BrowserRouter>
       </Provider>

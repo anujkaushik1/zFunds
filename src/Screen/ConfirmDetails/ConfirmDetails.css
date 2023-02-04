@@ -1,0 +1,126 @@
+.blocks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.blocks-container .confirm-block{
+    margin: 24px;
+    background: #FFFFFF;
+    border: 1px solid #8E959F;
+    border-radius: 12px;
+    padding: 4px 16px 16px 16px;
+    width: 358px;
+    position: relative;
+}
+
+.blocks-container .confirm-block .edit-btn-container{
+    color: #03A87D;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.blocks-container .confirm-block .edit-btn-container svg{
+    font-size: 13px;
+}
+.blocks-container .confirm-block .edit-btn-container button{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.015em;
+    color: #03A87D;
+    border: none;
+    background-color: transparent;
+    height: 19px;
+    cursor: pointer;
+}
+
+
+.blocks-container .confirm-block h2 {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.015em;
+    color: #052F5F;
+}
+
+.blocks-container .confirm-block h3{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+    color: #8E959F;
+    margin-bottom: 0px !important;
+}
+
+.blocks-container .confirm-block p {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.015em;
+    color: #052F5F;
+    margin-top: 0px !important;
+}
+
+.blocks-container .confirm-block .empty-div{
+    height: 62px;
+}
+
+.blocks-container .confirm-block .block-footer{
+    position: absolute;
+    background-color: #F0F3F5;
+    bottom:0;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:  5px 10px;
+}
+
+.blocks-container .confirm-block .block-footer p {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: #052F5F;
+    text-align: center;
+}
+
+.blocks-container .confirm-block .block-footer p span {
+    font-weight: 900;
+}
+
+.blocks-container .confirm-block .row-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 85%;
+}
+
+.blocks-container .confirm-block .row-container .col-container .pancard_upload{
+    width: 100px;
+}
+
+.blocks-container .confirm-block .row-container .col-container h1{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: rgba(5, 47, 95, 0.6);
+}
