@@ -35,7 +35,7 @@ function DeclarationScreen() {
         }
 
         else{
-            alert("Please turn on all toggle buttons to move ahead")
+            alert("Please confirm all options")
         }
 
     }

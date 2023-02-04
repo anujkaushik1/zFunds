@@ -26,19 +26,23 @@ function Header(props) {
                     padding: 0
                 }} />
 
+                <div style={{marginTop : '14px'}}></div>
+
                 <span style={{
                     color: '#052F5F',
                     marginLeft: '15px',
-                    marginTop: '2rem'
                 }}>
                     {props.desc}
                 </span>
 
-            </div>
+
+
+            </div >
             {
                 props.label !== '' && 
                 <div style={{
                     width: '100%',
+                    marginTop : '15px',
                     height: '50px',
                     backgroundColor: '#EFF3F6',
                     display: 'flex',

@@ -6,6 +6,11 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import PersonalDetails from "./Screen/PersonalDetails/PersonalDetails";
 import Documents from "./Screen/Documents/Documents";
 import DeclarationScreen from "./Screen/DeclarationScreen/DeclarationScreen";
+import { combineReducers, createStore } from "redux";
+import rootReducer from "./Redux/reducers/rootReducer";
+import { composeWithDevTools } from "@redux-devtools/extension";
+
+const reduxStore = createStore(rootReducer, composeWithDevTools());
 
 function App() {
   return (
