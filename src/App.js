@@ -5,6 +5,7 @@ import Home from "./Screen/Home/Home";
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import PersonalDetails from "./Screen/PersonalDetails/PersonalDetails";
 import Documents from "./Screen/Documents/Documents";
+import DeclarationScreen from "./Screen/DeclarationScreen/DeclarationScreen";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element = {<Home/>}> </Route>
           <Route path="/personal-details" element = {<PersonalDetails/>} ></Route>
           <Route path="/documents" element = {<Documents/>} ></Route>
+          <Route path="/declaration-screen" element = {<DeclarationScreen/>} ></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,0 +1,9 @@
+.declaration_titles{
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+}
+
+.declaration_switch{
+    margin-top: '20px';
+}

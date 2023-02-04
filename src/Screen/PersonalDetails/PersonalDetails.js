@@ -7,7 +7,8 @@ import { martialStatus } from '../../Data/MartialStatus';
 import Header from '../../Components/Header/Header';
 import { annualIncome } from '../../Data/AnnualIncome';
 import { useNavigate } from 'react-router-dom';
-import Buttons from '../../Components/Buttons.js/Buttons';
+import Buttons from '../../Components/Buttons/Buttons';
+
 
 
 function PersonalDetails() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Header from '../../Components/Header/Header';
 import './Documents.css'
 import CancelIcon from '@mui/icons-material/Cancel';
-import Buttons from '../../Components/Buttons.js/Buttons';
+import Buttons from '../../Components/Buttons/Buttons';
 import { useNavigate } from 'react-router-dom';
 
 function Documents() {
@@ -124,7 +124,8 @@ function Documents() {
                             backgroundColor: '#CDD5DF'
                         }}>
 
-                            <input onChange={(e) => uploadPanCard(e)} accept='image/*' type="file" className='input' />
+                            <input onChange={(e) => uploadPanCard(e)} 
+                                accept='image/*' type="file" className='input' />
 
                         </div>
 
@@ -197,7 +198,8 @@ function Documents() {
                             backgroundColor: '#CDD5DF'
                         }}>
                             
-                            <input onChange={(e) => uploadSignature(e)} accept='image/*' type="file" className='input' />
+                            <input onChange={(e) => uploadSignature(e)} 
+                                accept='image/*' type="file" className='input' />
 
                         </div>
 

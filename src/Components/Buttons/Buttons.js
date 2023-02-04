@@ -31,13 +31,14 @@ function Buttons({nextScreen}) {
             Next
         </Button>
 
+        <div style={{marginTop : '15px'}}></div>
+
         <span style={{
             fontSize: '14px',
             marginLeft: '15px',
             color: '#8E959F',
             fontFamily: 'Noto Sans',
             fontWeight: 600,
-            marginTop: '5px',
             marginBottom : '20px'
         }}>SKIP FOR NOW</span>
 
