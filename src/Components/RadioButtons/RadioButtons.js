@@ -7,6 +7,24 @@ import FormLabel from '@mui/material/FormLabel';
 
 function RadioButtons(props) {
 
+    let {userData} = props;
+
+    const handleRadioButtons = (e) => {
+        let value = e.target.value;
+        
+        if(props.radioGroup == 1){
+            userData = {...userData, ['martial_status'] : value};
+        }
+
+        else if(props.radioGroup == 2){
+            userData = {...userData, ['annual_income'] : value};
+
+        }
+
+        props.updateParentState({...userData});
+    }
+  
+
   return (
     <div style={{
         width: 'fit-content',
@@ -23,7 +41,7 @@ function RadioButtons(props) {
                 
             >
                 {props.data.map((obj, idx) => (
-                    <FormControlLabel style={{color : '#052F5F'}} key={idx} value={obj.value} control={<Radio />} label= {obj.label} />
+                    <FormControlLabel style={{color : '#052F5F'}} key={idx} onChange = {(e) => handleRadioButtons(e)} value={obj.value} control={<Radio />} label= {obj.label} />
                 ))}
                 
             </RadioGroup>
