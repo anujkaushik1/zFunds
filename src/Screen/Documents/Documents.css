@@ -1,0 +1,25 @@
+.pancard {
+    display: flex;
+    justify-content: space-around;
+    height: fit-content;
+}
+
+.pancard_upload{
+    height: 90px;
+    width: 150px;
+    border-radius: 5px;
+    border: 5px dotted gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.signature{
+    margin-top: 10px;
+}
+
+.signature_upload{
+    margin-right: 15px;
+}
