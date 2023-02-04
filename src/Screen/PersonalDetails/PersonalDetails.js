@@ -8,6 +8,8 @@ import Header from '../../Components/Header/Header';
 import { annualIncome } from '../../Data/AnnualIncome';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../../Components/Buttons/Buttons';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPersonalDetails } from '../../Redux/actions/personalDetailsActions';
 
 
 
@@ -30,9 +32,13 @@ function PersonalDetails() {
 
     const [email, setEmail] = useState('');
 
+    
+    const dispatch = useDispatch();
+
     const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
     const navigate = useNavigate();
+
 
     const handleInputs = (e) => {
         let name = e.target.name;
@@ -65,6 +71,7 @@ function PersonalDetails() {
         if(!isValidate)
             return ;
 
+        dispatch(addPersonalDetails(userData));
         navigate('/documents')
 
     }
@@ -263,5 +270,6 @@ function PersonalDetails() {
         </div>
     )
 }
+
 
 export default PersonalDetails

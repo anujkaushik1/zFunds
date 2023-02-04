@@ -2,15 +2,18 @@
 import * as personalDetails from '../actions/actions';
 
 const intialState = {
-    data : []
+    data : {}
 } 
 
 const personalDetailsReducer = (state =  intialState, action) => {
 
     switch(action.type){
-
         case personalDetails.ADD_PERSONAL_DETAILS:
-            break
+            let payload = action.payload;
+            return {
+                ...state,
+                ['data'] : payload
+            }
         
         default:
             return state
