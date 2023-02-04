@@ -1,3 +1,24 @@
 .textfield-border .MuiOutlinedInput-notchedOutline {
     border-color: black;
   }
+
+  .personaldetails_radio{
+    border: 2px solid #8E959F;
+    padding: 10px;
+    color : #052F5F;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15;
+    border-radius: 8px;
+  }
+
+  .personaldetails_radio_input{
+      display: none;
+  }
+
+  .clicked{
+    background-color: #32547C;
+    color : #FFFFFF;
+    border: none;
+
+  }
