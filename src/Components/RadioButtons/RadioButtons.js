@@ -4,6 +4,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { withStyles } from '@mui/material';
 
 function RadioButtons(props) {
 
@@ -43,7 +44,12 @@ function RadioButtons(props) {
                 {props.data.map((obj, idx) => (
                     <FormControlLabel style={{color : '#052F5F'}} key={idx} 
                       onChange = {(e) => handleRadioButtons(e)} value={obj.value}
-                      control={<Radio />} label= {obj.label} />
+                      sx = {{color : 'red'}}
+                      control={<Radio sx={{
+                        '&.Mui-checked': {
+                          color: '#04305C',
+                        },
+                      }}/>} label= {obj.label} />
                 ))}
                 
             </RadioGroup>
