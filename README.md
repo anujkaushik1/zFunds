@@ -1,6 +1,10 @@
 # Instructions
 ## How To Start
  
+ &nbsp;
+## Hosted Application Link - https://zfunds-assignment-anujkaushik.netlify.app/
+
+&nbsp;
 
 ## Command to set up the frontend locally
 First Step - npm i (To install all dependencies for frontend)
