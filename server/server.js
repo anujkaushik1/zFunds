@@ -7,6 +7,8 @@ const path = require('path');
 
 const app = express();
 
+// middleware to parse JSON data in the request body
+
 app.use(express.json());
 
 app.use(cors({
@@ -16,11 +18,15 @@ app.use(cors({
 
 const PORT = 5000;
 
+// Route to handle GET request to the root endpoint
+
 app.get('/', (req, res) => {
 
     res.status(200).send('Welcome to zFunds');
 
 });
+
+// Route to handle POST request to submit user details  
 
 app.post('/submit_details', upload.array('files', 3), (req, res) => {
 
@@ -36,11 +42,15 @@ app.post('/submit_details', upload.array('files', 3), (req, res) => {
             annual_income
         }
 
+        // Convert the data object to a JSON string
+
         const dataJson = JSON.stringify(dataObj);
+
+         // Path to the folder where the data files will be stored(eg - our file dirname\data)
 
         const dataFolderPath = path.join(__dirname, 'data');
 
-        
+        // Write the data to a file        
 
         fs.writeFileSync(`${dataFolderPath}/${father_name}.json`, dataJson);
 
