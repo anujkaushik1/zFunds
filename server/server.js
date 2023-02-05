@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const upload = require('./upload');
 
 const app = express();
 
@@ -14,13 +15,24 @@ const PORT = 5000;
 
 app.get('/', (req, res) => {
 
-    res.send('Welcome to zFunds');
+    res.status(200).send('Welcome to zFunds');
 
 });
 
-app.post('/submit_details', (req, res) => {
+app.post('/submit_details', upload.array('file', 100), (req, res) => {
 
-    
+    try {
+
+        const data = req.body;
+
+
+        
+    } catch (error) {
+        res.status(400).json({
+            success : 'false',
+            data : error.message
+        })
+    }
 
 })
 
