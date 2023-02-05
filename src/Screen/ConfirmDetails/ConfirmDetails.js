@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePersonalDetails } from '../../Redux/actions/personalDetailsActions';
 import { deleteDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
-
+import axiosClient from '../../network/client';
 
 const ConfirmDetails = () => {
 
@@ -20,6 +20,7 @@ const ConfirmDetails = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
 
     useEffect(() => {
 
@@ -46,12 +47,63 @@ const ConfirmDetails = () => {
 
         const cb = window.document.querySelector('#termsNcondition');
         if(cb.checked){
-            alert('Data Submitted Successfully');
-            deleteData();
-            navigate('/personal-details');
+
+            submitData();
+            // deleteData();
+            // navigate('/personal-details');
         }else{
             alert('Please read Terms and conditions to continue.')
         }
+    }
+
+    const submitData = async() => {
+
+        console.log(personalDetailsReducer)
+
+        const {email, father_name, mother_name, martial_status, annual_income} = 
+            personalDetailsReducer.data;
+
+        console.log(email, father_name, mother_name, martial_status, annual_income);
+        try {
+            
+            const formData = new FormData();
+
+            formData.append('email', email);
+            formData.append('father_name', father_name);
+            formData.append('mother_name', mother_name);
+            formData.append('martial_status', martial_status);
+            formData.append('annual_income', annual_income);
+            formData.append('files', 1)
+            formData.append('files', 2)
+            formData.append('files', 3)
+            
+            //data to a Blob object
+            const passImageBlob = new Blob([passDoc]);
+
+            //creating File object to send it api 
+            const passFile = new File([passImageBlob], 'profile.png');
+
+            const sigImageBlob = new Blob([sigDoc]);
+            const sigFile = new File([sigImageBlob], 'signature.png');
+
+            const panImageBlob = new Blob([panDoc]);
+            const panFile = new File([panImageBlob], 'pancard.png');
+
+            console.log(passFile, panFile, sigFile);
+
+            formData.append('files', passFile);
+            formData.append('files', sigFile);
+            formData.append('files', panFile);
+
+            axiosClient.defaults.headers = 'multipart/form-data';
+            await axiosClient.post('/submit_details', formData);
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     const deleteData = () => {
