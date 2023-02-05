@@ -34,6 +34,7 @@ const ConfirmDetails = () => {
         const sigImageData = localStorage.getItem('signature');
         const passImageData = localStorage.getItem('picture');
 
+
         setPanDoc(panImageData);
         setSigDoc(sigImageData);
         setPassDoc(passImageData);
@@ -42,13 +43,15 @@ const ConfirmDetails = () => {
     }, [])
 
     const nextScreen = (e) => {
-        alert('Data Submitted Successfully');
 
-        deleteData();
-
-        navigate('/personal-details');
-
-
+        const cb = window.document.querySelector('#termsNcondition');
+        if(cb.checked){
+            alert('Data Submitted Successfully');
+            deleteData();
+            navigate('/personal-details');
+        }else{
+            alert('Please read Terms and conditions to continue.')
+        }
     }
 
     const deleteData = () => {
@@ -58,6 +61,17 @@ const ConfirmDetails = () => {
         localStorage.removeItem('pan_card');
         localStorage.removeItem('signature');
         localStorage.removeItem('picture');
+    }
+
+    const editKYCDetails = (e) => {
+
+        navigate('/personal-details', {state : {personalDetailsReducer}});
+
+    }
+
+    const editDocuments = (e) => {
+
+        navigate('/documents');
     }
 
 
@@ -140,7 +154,7 @@ const ConfirmDetails = () => {
                     </div>
                     <div className='edit-btn-container'>
                         <EditIcon />
-                        <button>Edit</button>
+                        <button onClick={(e) => editKYCDetails(e)}>Edit</button>
                     </div>
                 </div>
                 <div className='confirm-block'>
@@ -197,11 +211,20 @@ const ConfirmDetails = () => {
                     </div>
                     <div className='edit-btn-container'>
                         <EditIcon />
-                        <button>Edit</button>
+                        <button onClick={(e) => editDocuments(e)}>Edit</button>
                     </div>
                 </div>
+
+                <div className='terms-condition'>
+                    <label class="container">
+                        <input type="checkbox" id="termsNcondition"/>
+                        <span class="checkmark"></span>
+                        I agree to the <span style={{fontWeight:"800"}}>Terms & Conditions</span>
+                    </label>
+                </div>
+                
+                <Buttons nextScreen={nextScreen} style={{marginTop:"10px", width:"90%"}}></Buttons>
             </div>
-            <Buttons nextScreen={nextScreen}></Buttons>
         </div>
     )
 }

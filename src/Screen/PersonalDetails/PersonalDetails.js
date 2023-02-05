@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button, TextField } from '@mui/material/';
 import './PersonalDetails.css'
@@ -6,7 +6,7 @@ import RadioButtons from '../../Components/RadioButtons/RadioButtons';
 import { martialStatus } from '../../Data/MartialStatus';
 import Header from '../../Components/Header/Header';
 import { annualIncome } from '../../Data/AnnualIncome';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Buttons from '../../Components/Buttons/Buttons';
 import { useDispatch } from 'react-redux';
 import { addPersonalDetails } from '../../Redux/actions/personalDetailsActions';
@@ -31,6 +31,11 @@ function PersonalDetails() {
         emailRes: false
     })
 
+    const [defaultValue, setDefaultValue] = useState({
+        radioGrp1 : "Single",
+        radioGrp2 : "Below 1 Lakh"
+    })
+
     const [email, setEmail] = useState('');
 
     // Dispatch hook to dispatch actions
@@ -41,6 +46,38 @@ function PersonalDetails() {
 
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+
+        if(location.state){
+            const data = location.state.personalDetailsReducer.data;
+            const {father_name,mother_name,martial_status,annual_income, email} = data;
+            
+            let idxAtTheRate = email.indexOf('@');
+            
+            let resEmail = email.substring(0, idxAtTheRate);
+
+            setUserData({
+                ...userData,
+                father_name : father_name,
+                mother_name : mother_name,
+                martial_status : martial_status,
+                annual_income : annual_income,
+            });
+
+            setDefaultValue({
+                ...defaultValue,
+                radioGrp1 : martial_status,
+                radioGrp2 : annual_income
+            })
+
+            setEmail(resEmail);
+
+        }
+
+
+    }, []);
 
 
     const handleInputs = (e) => {
@@ -136,7 +173,7 @@ function PersonalDetails() {
 
                 <RadioButtons userData={userData} radioGroup={1}
                     data={martialStatus} updateParentState={updateParentState}
-                    defaultValue="Single" isRow={true} />
+                    defaultValue= {defaultValue.radioGrp1} isRow={true} />
 
             </div>
 
@@ -271,7 +308,7 @@ function PersonalDetails() {
 
                 <RadioButtons userData={userData} radioGroup={2}
                     data={annualIncome} updateParentState={updateParentState}
-                    defaultValue="Below 1 Lakh" isRow={false} />
+                    defaultValue= {defaultValue.radioGrp2} isRow={false} />
 
             </div>
 

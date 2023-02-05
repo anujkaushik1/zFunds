@@ -30,6 +30,18 @@ function Documents() {
         if (Object.keys(data).length === 0) {
             navigate('/personal-details');
         }
+
+
+        const panImageData = localStorage.getItem('pan_card');
+        const sigImageData = localStorage.getItem('signature');
+        const passImageData = localStorage.getItem('picture');
+
+        
+        setPanDoc(panImageData);
+        setSigDoc(sigImageData);
+        setPassDoc(passImageData);
+
+
     }, [panDoc, sigDoc, passDoc]);
 
     // navigate to the declaration page if all documents are uploaded, otherwise show error messages
@@ -49,7 +61,7 @@ function Documents() {
     const uploadPictureDoc = (e) => {
         const file = e.target.files[0];
         if (checkFileSize(file)) {
-            uploadFile(file, " picture");
+            uploadFile(file, "picture");
         }
         setPassDoc(URL.createObjectURL(file));
     }

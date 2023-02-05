@@ -173,7 +173,7 @@ function DeclarationScreen() {
                             },
                         }} />
                         <Switch onChange={(e) => handleSwitchButtons(e)} 
-                             checked = {switchValues.polically_exposed} name = "polically_exposed"
+                             checked = {switchValues.politically_exposed} name = "politically_exposed"
                              sx={{
                             "& .MuiSwitch-switchBase.Mui-checked": {
                                 color: "#052F5F"
