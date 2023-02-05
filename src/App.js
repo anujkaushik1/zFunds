@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import Navbar from "./Components/Navbar/Navbar";
 import './App.css'
 import Home from "./Screen/Home/Home";
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
@@ -11,6 +10,7 @@ import rootReducer from "./Redux/reducers/rootReducer";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { Provider } from "react-redux";
 import ConfirmDetails from "./Screen/ConfirmDetails/ConfirmDetails";
+import Navbar from './Components/Navbar/Navbar';
 
 
 const reduxStore = createStore(rootReducer, composeWithDevTools());

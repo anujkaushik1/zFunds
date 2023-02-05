@@ -219,7 +219,7 @@ function Documents() {
                     </div>
 
                     <div className='pancard_upload'>
-                        <CancelIcon sx={{
+                        <CancelIcon  sx={{
                             color: '#01AA7B',
                             height: '15.5px',
                             width: '15.5px',

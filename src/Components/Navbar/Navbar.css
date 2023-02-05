@@ -5,6 +5,36 @@
   
 }
 
+.navbar_toolbar .back_btn{
+  width: 20%;
+  cursor : 'pointer';
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar_toolbar  .navbar_img{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar_toolbar  .navbar_img img{
+  height : 47.59px;
+  width : 96px;
+}
+
+.navbar_toolbar .navbar_search_cart{
+  display : flex;
+  align-items : center;
+  justify-content: right;
+  height : 100%;
+  width : 20%;
+}
+
 @media (max-width: 320px) {
     .navbar_arrowback {
       height: 2px;

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Typography } from '@mui/material'
+import { Typography } from '@mui/material';
 
 function Header(props) {
   return (
     <div>
         <div
                 style={{
-                    height: '9.5vh',
+                    height: 'fit-content',
                     width: '100%'
                 }}>
                 <Typography
@@ -28,12 +28,12 @@ function Header(props) {
 
                 <div style={{marginTop : '14px'}}></div>
 
-                <span style={{
+                <p style={{
                     color: '#052F5F',
                     marginLeft: '15px',
                 }}>
                     {props.desc}
-                </span>
+                </p>
 
 
 

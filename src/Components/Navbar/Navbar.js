@@ -18,15 +18,7 @@ function Navbar() {
                  position="static" 
                  sx={{ height: '55.59px', background : '#FFFFFF'}}>
                     <Toolbar className='navbar_toolbar'>
-                        <div 
-                          style={{
-                                height : '100%', 
-                                alignItems : 'center',
-                                width : '3vw' ,
-                                display : 'flex' ,
-                                justifyContent : 'center',
-                                cursor : 'pointer',
-                             }}>
+                        <div className='back_btn'>
                             <ArrowBackIosIcon 
                                 className='navbar_arrowback'
                                 sx = {{
@@ -48,34 +40,11 @@ function Navbar() {
                             </Typography>
                         </div>
 
-                        <div 
-                            className='navbar_img'
-                            style={{
-                                    height : '100%', 
-                                    width : '80vw', 
-                                    display : 'flex',
-                                    justifyContent : 'center',
-                                    alignItems : 'center'
-                                  }}>     
-                            <img 
-                                style={{
-                                        height : '47.59px', 
-                                        width : '96px',
-                                        marginLeft : '10rem'
-                                      }} 
-                                src="https://zfunds.in/static/logo.png"/>
+                        <div className='navbar_img'>     
+                        <img  src="https://zfunds.in/static/logo.png"/>
                         </div>
 
-                        <div 
-                            className='navbar_search_cart'
-                            style={{
-                                display : 'flex',
-                                alignItems : 'center',
-                                height : '100%',
-                                width : 'fit-content',
-                                position : 'relative',
-                                left : '0'
-                            }}>
+                        <div className='navbar_search_cart'>
                             <SearchIcon 
                                 className='navbar_search'
                                 sx={{
@@ -91,7 +60,7 @@ function Navbar() {
                                     color : '#052F5F',
                                     height : '20px',
                                     width : '30px',
-                                    marginLeft : '40px'
+                                    marginLeft : '10px'
                                 }}/>
                         </div>
                         
