@@ -49,8 +49,8 @@ const ConfirmDetails = () => {
         if(cb.checked){
 
             submitData();
-            // deleteData();
-            // navigate('/personal-details');
+            deleteData();
+            navigate('/personal-details');
         }else{
             alert('Please read Terms and conditions to continue.')
         }
@@ -278,7 +278,7 @@ const ConfirmDetails = () => {
                     <label class="container">
                         <input type="checkbox" id="termsNcondition"/>
                         <span class="checkmark"></span>
-                        I agree to the <span style={{fontWeight:"800"}}>Terms & Conditions</span>
+                        I agree to the &nbsp;<span style={{fontWeight:"800"}}>Terms & Conditions</span>
                     </label>
                 </div>
                 
