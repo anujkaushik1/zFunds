@@ -1,9 +1,20 @@
 const path = require('path');
 const multer = require('multer');
+const fs = require('fs');
 
 let storage = multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, 'images/')  // location where file will be saved
+         
+        const imageFolderPath = path.join(__dirname, 'images');
+        const fatherImageFolder = `${imageFolderPath}\\${req.body.father_name}`;
+
+        if(!fs.existsSync(fatherImageFolder))
+             fs.mkdirSync(fatherImageFolder);
+
+
+
+        console.log(fatherImageFolder);
+        cb(null, `images/${req.body.father_name}/`)  // location where file will be saved
     },
     filename : function(req, file, cb){
         let ext = path.extname(file.originalname);  // rename file with current timestamp & extention => always unique
@@ -14,8 +25,6 @@ let storage = multer.diskStorage({
 let upload = multer({
     storage : storage,
     fileFilter : function(req, file, cb){ 
-        console.log(file.mimetype);
-        console.log(file);
         cb(null, true);
     
     },

@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const upload = require('./upload');
+const fs = require('fs');
+const path = require('path');
+
 
 const app = express();
 
@@ -19,12 +22,30 @@ app.get('/', (req, res) => {
 
 });
 
-app.post('/submit_details', upload.array('file', 100), (req, res) => {
+app.post('/submit_details', upload.array('files', 3), (req, res) => {
 
     try {
 
-        const data = req.body;
+        const {email, father_name, mother_name, martial_status, annual_income} = req.body;
 
+        const dataObj = {
+            email, 
+            father_name, 
+            mother_name, 
+            martial_status, 
+            annual_income
+        }
+
+        const dataJson = JSON.stringify(dataObj);
+
+        const dataFolderPath = path.join(__dirname, 'data');
+
+        fs.writeFileSync(`${dataFolderPath}/${father_name}.json`, dataJson);
+
+        res.status(200).json({
+            success : 'Data Submitted Successfully',
+            data
+        })
 
         
     } catch (error) {
