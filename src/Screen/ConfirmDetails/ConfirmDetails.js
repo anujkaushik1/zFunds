@@ -99,7 +99,7 @@ const ConfirmDetails = () => {
             axiosClient.defaults.headers = 'multipart/form-data';
             await axiosClient.post('/submit_details', formData);
 
-
+            alert('Data Submitted Successfully');
 
         } catch (error) {
             console.log(error);

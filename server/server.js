@@ -40,6 +40,8 @@ app.post('/submit_details', upload.array('files', 3), (req, res) => {
 
         const dataFolderPath = path.join(__dirname, 'data');
 
+        
+
         fs.writeFileSync(`${dataFolderPath}/${father_name}.json`, dataJson);
 
         res.status(200).json({
@@ -49,6 +51,7 @@ app.post('/submit_details', upload.array('files', 3), (req, res) => {
 
         
     } catch (error) {
+        
         res.status(400).json({
             success : 'false',
             data : error.message
