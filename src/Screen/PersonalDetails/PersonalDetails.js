@@ -67,7 +67,6 @@ function PersonalDetails() {
             });
 
             setDefaultValue({
-                ...defaultValue,
                 radioGrp1 : martial_status,
                 radioGrp2 : annual_income
             })
@@ -77,7 +76,7 @@ function PersonalDetails() {
         }
 
 
-    }, []);
+    }, [location]);
 
 
     const handleInputs = (e) => {

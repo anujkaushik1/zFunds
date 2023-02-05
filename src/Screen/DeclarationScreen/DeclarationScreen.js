@@ -3,7 +3,7 @@ import Header from '../../Components/Header/Header';
 import Switch from '@mui/material/Switch';
 import './DeclarationScreen.css'
 import Buttons from '../../Components/Buttons/Buttons';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
 
@@ -21,6 +21,8 @@ function DeclarationScreen() {
 
     const dispatch = useDispatch();
 
+    const location = useLocation();
+
     // hook to access the personalDetailsReducer from the global state
 
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
@@ -33,6 +35,23 @@ function DeclarationScreen() {
 
             navigate('/personal-details');
         }
+
+        if(location.state){
+
+            const data = location.state.data;
+
+            if(data.indian_citizen && data.indian_tax && data.politically_exposed){
+                
+                setSwitchValues({
+                    indian_citizen : true,
+                    indian_tax : true,
+                    politically_exposed : true
+                })
+
+            }
+        }
+
+
     }, []);
 
     // Function to handle switch button changes

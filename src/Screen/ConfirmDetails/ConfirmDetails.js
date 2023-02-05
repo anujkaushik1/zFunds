@@ -74,6 +74,12 @@ const ConfirmDetails = () => {
         navigate('/documents');
     }
 
+    const editUserDetails = (e) => {
+
+        navigate('/declaration', {state : declarationDetailsReducer});
+
+    }
+
 
     return (
         <div>
@@ -95,7 +101,7 @@ const ConfirmDetails = () => {
                     </div>
                     <div className='edit-btn-container'>
                         <EditIcon />
-                        <button>Edit</button>
+                        <button onClick={(e) => editUserDetails(e)}>Edit</button>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -6,8 +6,19 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { withStyles } from '@mui/material';
 
+
 function RadioButtons(props) {
 
+    const [defaultValue, setDefaultValue] = useState('');
+
+    useEffect(() => {
+
+      if(!window.location.state){
+        setDefaultValue(props.defaultValue);
+      }
+
+    }, [window.location.state])
+    
     let {userData} = props;
 
     const handleRadioButtons = (e) => {
@@ -36,7 +47,8 @@ function RadioButtons(props) {
         <FormControl>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue={props.defaultValue}
+                value={defaultValue}
+                onChange = {e => setDefaultValue(e.target.value)}
                 name="radio-buttons-group"
                 row = {props.isRow}
                 
