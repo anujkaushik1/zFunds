@@ -56,6 +56,20 @@ const ConfirmDetails = () => {
         }
     }
 
+    const convertImageToBlob = (data) => {
+        const parts = data.split(";base64,");
+        const contentType = parts[0].split(":")[1];
+        const raw = window.atob(parts[1]);
+        const rawLength = raw.length;
+        const uInt8Array = new Uint8Array(rawLength);
+      
+        for (let i = 0; i < rawLength; i++) {
+          uInt8Array[i] = raw.charCodeAt(i);
+        }
+      
+        return new Blob([uInt8Array], { type: contentType });
+    }
+
     const submitData = async() => {
 
         console.log(personalDetailsReducer)
@@ -72,28 +86,15 @@ const ConfirmDetails = () => {
             formData.append('father_name', father_name);
             formData.append('mother_name', mother_name);
             formData.append('martial_status', martial_status);
-            formData.append('annual_income', annual_income);
-            formData.append('files', 1)
-            formData.append('files', 2)
-            formData.append('files', 3)
+            formData.append('annual_income', annual_income);            
             
-            //data to a Blob object
-            const passImageBlob = new Blob([passDoc]);
+            const passBlob = convertImageToBlob(passDoc);
+            const sigBlob = convertImageToBlob(sigDoc);
+            const panBlob = convertImageToBlob(panDoc);
 
-            //creating File object to send it api 
-            const passFile = new File([passImageBlob], 'profile.png');
-
-            const sigImageBlob = new Blob([sigDoc]);
-            const sigFile = new File([sigImageBlob], 'signature.png');
-
-            const panImageBlob = new Blob([panDoc]);
-            const panFile = new File([panImageBlob], 'pancard.png');
-
-            console.log(passFile, panFile, sigFile);
-
-            formData.append('files', passFile);
-            formData.append('files', sigFile);
-            formData.append('files', panFile);
+            formData.append('files', passBlob, "profile.jpeg");
+            formData.append('files', sigBlob, "signature.jpeg");
+            formData.append('files', panBlob, "pancard.jpeg");
 
             axiosClient.defaults.headers = 'multipart/form-data';
             await axiosClient.post('/submit_details', formData);
