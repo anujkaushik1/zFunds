@@ -7,8 +7,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './Navbar.css'
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+    const navigate = useNavigate();
+    
+
     return (
         <div>
             <div style={{ height: '32px', width: '100%', backgroundColor: '#757575' }}></div>
@@ -18,7 +22,7 @@ function Navbar() {
                  position="static" 
                  sx={{ height: '55.59px', background : '#FFFFFF'}}>
                     <Toolbar className='navbar_toolbar'>
-                        <div className='back_btn'>
+                        <div className='back_btn' onClick={(e) =>  navigate(-1)}>
                             <ArrowBackIosIcon 
                                 className='navbar_arrowback'
                                 sx = {{
@@ -26,6 +30,7 @@ function Navbar() {
                                         color : '#052F5F',
                                         stroke : '#052F5F',
                                         strokeWidth : '2',
+                                        cursor : 'pointer'
                                      }}/> 
                             <Typography 
                                 component='span'
@@ -34,14 +39,16 @@ function Navbar() {
                                     fontSize : '16px', 
                                     fontWeight : 'bold',    
                                     color : '#052F5F',
-
+                                    cursor : 'pointer'
                                    }}>
                                 Back
                             </Typography>
                         </div>
 
                         <div className='navbar_img'>     
-                        <img  src="https://zfunds.in/static/logo.png"/>
+                        <img onClick={(e) => navigate('/home')} 
+                            style = {{cursor : 'pointer'}}  
+                            src="https://zfunds.in/static/logo.png"/>
                         </div>
 
                         <div className='navbar_search_cart'>

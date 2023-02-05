@@ -7,7 +7,6 @@
 
 .navbar_toolbar .back_btn{
   width: 20%;
-  cursor : 'pointer';
   display: flex;
   justify-content: left;
   align-items: center;
