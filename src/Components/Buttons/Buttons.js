@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import React from 'react'
 
-function Buttons({nextScreen}) {
+function Buttons({nextScreen, style}) {
   return (
     <div style={{
         width : '100%',
@@ -9,7 +9,10 @@ function Buttons({nextScreen}) {
         display : 'flex',
         justifyContent : 'center',
         flexDirection : 'column',
-        alignItems : 'center'
+        alignItems : 'center',
+        marginTop:"30px",
+        marginBottom:"30px",
+        ...style
     }}>
 
         <Button 
@@ -21,7 +24,8 @@ function Buttons({nextScreen}) {
                     background : '#052F5F', 
                 },
                 height : '56px',
-                width : '30%', 
+                width : '30%',
+                minWidth:"320px", 
                 textTransform : 'none',
                 fontWeight : 700,
                 color : '#FFFFFF',
