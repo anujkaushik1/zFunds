@@ -77,7 +77,7 @@ const ConfirmDetails = () => {
                     </div>
                     <div>
                         <h3>Name</h3>
-                        <p>Tanvi Jadhav</p>
+                         <p>Tanvi Jadhav</p>
                     </div>
                     <div className='edit-btn-container'>
                         <EditIcon />

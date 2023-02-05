@@ -3,26 +3,29 @@ import Header from '../../Components/Header/Header';
 import './Documents.css'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Buttons from '../../Components/Buttons/Buttons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ElevatorSharp } from '@mui/icons-material';
+
 
 function Documents() {
 
     const [panDoc, setPanDoc] = useState(null);
     const [sigDoc, setSigDoc] = useState(null);
     const [passDoc, setPassDoc] = useState(null);
+
+
     const navigate = useNavigate();
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
-    const {data} = personalDetailsReducer;
+    const { data } = personalDetailsReducer;
 
     useEffect(() => {
-        
-        if(Object.keys(data).length === 0){
+
+        if (Object.keys(data).length === 0) {
             navigate('/personal-details');
         }
 
-    }, []);
+
+    },[panDoc, sigDoc, passDoc]);
 
     const nextScreen = () => {
         if (passDoc && panDoc && sigDoc)
@@ -48,9 +51,7 @@ function Documents() {
         if (checkFileSize(file)) {
             uploadFile(file, "picture");
         }
-
-        setPassDoc(file);
-            
+        setPassDoc(URL.createObjectURL(file));
     }
 
     const uploadSignature = (e) => {
@@ -60,7 +61,9 @@ function Documents() {
             uploadFile(file, "signature");
         }
 
-        setSigDoc(file);
+        setSigDoc(URL.createObjectURL(file));
+
+
     }
 
     const uploadPanCard = (e) => {
@@ -70,7 +73,9 @@ function Documents() {
             uploadFile(file, "pan_card");
 
         }
-        setPanDoc(e.target.files[0]);
+
+        setPanDoc(URL.createObjectURL(file));
+
     }
 
     function checkFileSize(file) {
@@ -93,6 +98,7 @@ function Documents() {
         reader.readAsDataURL(file);
 
     }
+
 
     return (
         <div style={{ height: '100%', width: '100%' }}>
@@ -149,6 +155,12 @@ function Documents() {
                             width: '70%',
                             backgroundColor: '#CDD5DF'
                         }}>
+
+                            {
+                                passDoc && 
+                                <img className='image' src={passDoc} alt='Photo' />
+
+                            }
 
                             <input onChange={(e) => uploadPictureDoc(e)}
                                 accept='image/*' type="file" className='input' />
@@ -220,6 +232,11 @@ function Documents() {
                             width: '70%',
                             backgroundColor: '#CDD5DF'
                         }}>
+
+                            {
+                                panDoc &&
+                                <img className='image' src={panDoc} alt='Photo' />
+                            }
 
                             <input onChange={(e) => uploadPanCard(e)}
                                 accept='image/*' type="file" className='input' />
@@ -294,6 +311,11 @@ function Documents() {
                             width: '70%',
                             backgroundColor: '#CDD5DF'
                         }}>
+
+                            {
+                                sigDoc &&
+                                <img className='image' src={sigDoc} alt='Signature' />
+                            }
 
                             <input onChange={(e) => uploadSignature(e)}
                                 accept='image/*' type="file" className='input' />
