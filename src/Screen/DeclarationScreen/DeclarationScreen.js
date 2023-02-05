@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../Components/Header/Header';
 import Switch from '@mui/material/Switch';
 import './DeclarationScreen.css'
@@ -17,6 +17,19 @@ function DeclarationScreen() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        const panImageData = localStorage.getItem('pan_card');
+        const sigImageData = localStorage.getItem('signature');
+        const passImageData = localStorage.getItem('picture');
+
+
+        if(!panImageData || !sigImageData || !passImageData){
+            navigate('/documents');
+        }
+
+    }, []);
 
     const handleSwitchButtons = (e) => {
 
