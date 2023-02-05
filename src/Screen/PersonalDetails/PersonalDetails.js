@@ -111,7 +111,7 @@ function PersonalDetails() {
         mother_name = mother_name === '' ? true : false;
         let email_val = email.split('@')[0] === '' ? true : false;
 
-        setError({ father_name, mother_name, email_val });
+        setError({ father_name, mother_name, emailRes : email_val });
 
         // return true if none of the fields are empty, else return false
         if (!father_name && !mother_name && !email_val)
