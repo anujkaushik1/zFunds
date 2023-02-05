@@ -8,34 +8,37 @@ import Header from '../../Components/Header/Header';
 import { annualIncome } from '../../Data/AnnualIncome';
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../../Components/Buttons/Buttons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addPersonalDetails } from '../../Redux/actions/personalDetailsActions';
 
 
 
 function PersonalDetails() {
 
+    // State hook to store the value of selected radio button
     const [radioButtonVal, setRadioButtonVal] = useState("@gmail.com");
+
     const [userData, setUserData] = useState({
-        father_name : '',
-        mother_name : '',
-        martial_status : 'Single',
-        annual_income : 'Below 1 Lakh'
+        father_name: '',
+        mother_name: '',
+        martial_status: 'Single',
+        annual_income: 'Below 1 Lakh'
     })
 
     const [error, setError] = useState({
-        father_name : false,
-        mother_name : false,
-        emailRes : false
-
+        father_name: false,
+        mother_name: false,
+        emailRes: false
     })
 
     const [email, setEmail] = useState('');
 
-    
+    // Dispatch hook to dispatch actions
     const dispatch = useDispatch();
 
+    // Hook to check the screen size
     const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
 
     const navigate = useNavigate();
 
@@ -44,9 +47,15 @@ function PersonalDetails() {
         let name = e.target.name;
         let value = e.target.value;
 
-        if(name === 'email'){
-            console.log(value)
-            if(value.endsWith(radioButtonVal)){
+        
+        if (name === 'email') {
+
+            // check if the value of the email field ends with the value of the radio button
+
+            if (value.endsWith(radioButtonVal)) {
+
+                // remove the value of the radio button from the email field
+
                 const modiValue = value.replace(radioButtonVal, "");
                 setEmail(modiValue);
             }
@@ -61,22 +70,29 @@ function PersonalDetails() {
     })
 
     const handleRadioButton = (e) => {
+
+        // update the radioButtonVal state with the value of the selected radio button
+
         setRadioButtonVal(e.currentTarget.value);
     }
 
     const nextScreen = (e) => {
-        
+
         const isValidate = validation(userData);
 
-        if(!isValidate)
-            return ;
+        if (!isValidate)
+            return;
 
+        // dispatch the addPersonalDetails action with the userData state
         dispatch(addPersonalDetails(userData));
+
+        // navigate to the document screen
+
         navigate('/documents')
 
     }
 
-    const validation = ({father_name, mother_name}) => {
+    const validation = ({ father_name, mother_name }) => {
 
         father_name = father_name === '' ? true : false;
         mother_name = mother_name === '' ? true : false;
@@ -85,17 +101,18 @@ function PersonalDetails() {
 
         emailRes = emailRes === '' ? true : false;
 
-        setError({father_name, mother_name, emailRes});
+        setError({ father_name, mother_name, emailRes });
 
+        // return true if none of the fields are empty, else return false
         if (!father_name && !mother_name && !emailRes)
             return true;
-        
+
 
 
         return false;
 
     }
-    
+
 
     return (
         <div style={{ height: '100%', width: '100%' }}>
@@ -117,9 +134,9 @@ function PersonalDetails() {
                     fontWeight: 700
                 }}>Martial Status</span>
 
-                <RadioButtons userData = {userData} radioGroup = {1} 
-                    data={martialStatus} updateParentState={updateParentState} 
-                   defaultValue="Single" isRow={true} />
+                <RadioButtons userData={userData} radioGroup={1}
+                    data={martialStatus} updateParentState={updateParentState}
+                    defaultValue="Single" isRow={true} />
 
             </div>
 
@@ -147,7 +164,7 @@ function PersonalDetails() {
                     }}
                     label="Enter father’s name here"
                     className='textfield-border'
-                    error = {error.father_name}
+                    error={error.father_name}
                     size={isSmallScreen ? 'small' : 'medium'}
                     value={userData.father_name}
                     name="father_name"
@@ -175,7 +192,7 @@ function PersonalDetails() {
                     size={isSmallScreen ? 'small' : 'medium'}
                     value={userData.mother_name}
                     name="mother_name"
-                    error = {error.mother_name}
+                    error={error.mother_name}
                     onChange={(e) => handleInputs(e)}
                     variant="outlined" />
 
@@ -213,13 +230,7 @@ function PersonalDetails() {
                     marginTop: '5px'
                 }}>You will receive portfolio statements on this email id</span>
 
-                <div style={{
-                    display: 'flex',
-                    marginTop: '25px',
-                    marginLeft: '15px',
-                    marginRight: '15px',
-                    justifyContent: 'space-evenly'
-                }}>
+                <div className="email-btns">
 
                     <div>
                         <input onChange={(e) => handleRadioButton(e)} className='personaldetails_radio_input' type="radio" id="gmail" name="drone" value="@gmail.com"
@@ -229,7 +240,6 @@ function PersonalDetails() {
 
                     <div>
                         <input onChange={(e) => handleRadioButton(e)} className='personaldetails_radio_input' type="radio" id="yahoo" name="drone" value="@yahoo.com"
-
                         />
                         <label className={`personaldetails_radio ${radioButtonVal === '@yahoo.com' && "clicked"}`} htmlFor="yahoo">@yahoo.com</label>
                     </div>
@@ -250,7 +260,7 @@ function PersonalDetails() {
 
             </div>
 
-            <div style={{marginTop : '20px'}}>
+            <div style={{ marginTop: '20px' }}>
 
                 <span style={{
                     fontSize: '16px',
@@ -258,8 +268,8 @@ function PersonalDetails() {
                     color: '#052F5F',
                     fontWeight: 700,
                 }}>Annual Income</span>
-                
-                <RadioButtons  userData = {userData} radioGroup = {2} 
+
+                <RadioButtons userData={userData} radioGroup={2}
                     data={annualIncome} updateParentState={updateParentState}
                     defaultValue="Below 1 Lakh" isRow={false} />
 

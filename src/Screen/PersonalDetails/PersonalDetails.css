@@ -10,6 +10,8 @@
     font-weight: 600;
     font-size: 15;
     border-radius: 8px;
+    display: block;
+    margin-top: 15px;
   }
 
   .personaldetails_radio_input{
@@ -22,3 +24,26 @@
     border: none;
 
   }
+
+  .email-btns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 15px;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+
+  .email-btns div{
+    height: fit-content;
+    width: fit-content;
+  }
+
+@media (max-width: 466px) {
+  .email-btns {
+    justify-content: flex-start;
+  }
+  .email-btns div{
+    margin: 0 15px 0 0;
+  }
+}
