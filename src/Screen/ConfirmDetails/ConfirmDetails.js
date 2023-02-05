@@ -19,9 +19,16 @@ const ConfirmDetails = () => {
     const declarationDetailsReducer = useSelector(state => state.declarationDetailsReducer);
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
 
     useEffect(() => {
+
+        const {data} = personalDetailsReducer;
+
+
+        if(Object.keys(data).length === 0){
+            navigate('/personal-details');
+        }
 
         const panImageData = localStorage.getItem('pan_card');
         const sigImageData = localStorage.getItem('signature');

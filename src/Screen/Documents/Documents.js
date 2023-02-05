@@ -15,16 +15,9 @@ function Documents() {
     const navigate = useNavigate();
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
     const {data} = personalDetailsReducer;
-    const location = useLocation();
 
     useEffect(() => {
-        const panImageData = localStorage.getItem('pan_card');
-        const sigImageData = localStorage.getItem('signature');
-        const passImageData = localStorage.getItem('picture');
-
-        if(panImageData || sigImageData || passImageData)
-            return ;
-
+        
         if(Object.keys(data).length === 0){
             navigate('/personal-details');
         }

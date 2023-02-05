@@ -4,7 +4,7 @@ import Switch from '@mui/material/Switch';
 import './DeclarationScreen.css'
 import Buttons from '../../Components/Buttons/Buttons';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
 
 function DeclarationScreen() {
@@ -18,15 +18,13 @@ function DeclarationScreen() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
+    const {data} = personalDetailsReducer;
+
     useEffect(() => {
-
-        const panImageData = localStorage.getItem('pan_card');
-        const sigImageData = localStorage.getItem('signature');
-        const passImageData = localStorage.getItem('picture');
-
-
-        if(!panImageData || !sigImageData || !passImageData){
-            navigate('/documents');
+        
+        if(Object.keys(data).length === 0){
+            navigate('/personal-details');
         }
 
     }, []);

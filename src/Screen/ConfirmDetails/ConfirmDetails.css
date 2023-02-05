@@ -115,6 +115,9 @@
 
 .blocks-container .confirm-block .row-container .col-container .pancard_upload {
     width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -132,5 +135,5 @@
 .image{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    display : block
 }
