@@ -42,6 +42,9 @@ const ConfirmDetails = () => {
 
         dispatch(deletePersonalDetails());
         dispatch(deleteDeclarationDetails());
+        localStorage.removeItem('pan_card');
+        localStorage.removeItem('signature');
+        localStorage.removeItem('picture');
     }
 
 
@@ -133,7 +136,10 @@ const ConfirmDetails = () => {
                         <div className='col-container'>
                             <h1>Photo</h1>
                             <div className='pancard_upload'>
-                                <img className='image' src={passDoc} alt='Photo' />
+                                {
+                                    passDoc && 
+                                   <img className='image' src={passDoc} alt='Photo' />
+                                }
 
                                 <div style={{
                                     height: '70%',
@@ -146,7 +152,10 @@ const ConfirmDetails = () => {
                         <div className='col-container'>
                             <h1>PAN Card</h1>
                             <div className='pancard_upload'>
-                                <img className='image' src={panDoc} alt='Photo' />
+                                {
+                                    panDoc &&
+                                    <img className='image' src={panDoc} alt='Photo' />
+                                }
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
@@ -157,7 +166,10 @@ const ConfirmDetails = () => {
                         <div className='col-container'>
                             <h1>Signature</h1>
                             <div className='pancard_upload'>
-                                 <img className='image' src={sigDoc} alt='Signature' />
+                                {
+                                    sigDoc &&
+                                    <img className='image' src={sigDoc} alt='Signature' />
+                                }
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
