@@ -1,3 +1,5 @@
+
+// Data for annual income radio button
 export const annualIncome = [
     {
         value : "Below 1 Lakh",

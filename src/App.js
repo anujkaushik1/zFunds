@@ -12,12 +12,15 @@ import { Provider } from "react-redux";
 import ConfirmDetails from "./Screen/ConfirmDetails/ConfirmDetails";
 import Navbar from './Components/Navbar/Navbar';
 
+// Creating the redux store and enabling dev tools for development purposes
 
 const reduxStore = createStore(rootReducer, composeWithDevTools());
 
 function App() {
   return (
     <>
+      {/* Wrapping the entire app with the provider to make the store available globally */}
+
       <Provider store={reduxStore}>
         <BrowserRouter>
           <Navbar/> 

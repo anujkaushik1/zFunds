@@ -1,3 +1,6 @@
+
+// Data for matial status radio button
+
 export const martialStatus = [
     {
         value : "Single",

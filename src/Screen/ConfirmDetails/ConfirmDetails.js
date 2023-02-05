@@ -11,13 +11,18 @@ import axiosClient from '../../network/client';
 
 const ConfirmDetails = () => {
 
+    //hook to  store the base64 data coming from storage
+
     const [panDoc, setPanDoc] = useState(null);
     const [sigDoc, setSigDoc] = useState(null);
     const [passDoc, setPassDoc] = useState(null);
 
+    // retrieves the personal details and declaration details data from the store
+
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
     const declarationDetailsReducer = useSelector(state => state.declarationDetailsReducer);
 
+    // dispatches actions to delete data from store
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -30,6 +35,8 @@ const ConfirmDetails = () => {
         if (Object.keys(data).length === 0) {
             navigate('/personal-details');
         }
+
+        // retrieves the PAN, signature, and profile images from local storage
 
         const panImageData = localStorage.getItem('pan_card');
         const sigImageData = localStorage.getItem('signature');
@@ -44,17 +51,26 @@ const ConfirmDetails = () => {
     }, [])
 
     const nextScreen = (e) => {
+        
+        // gets the checkbox element
 
         const cb = window.document.querySelector('#termsNcondition');
         if(cb.checked){
 
+            // if checkbox clicked call functions
+            
             submitData();
+
+            alert('Data Submitted Successfully');
+
             deleteData();
             navigate('/personal-details');
         }else{
             alert('Please read Terms and conditions to continue.')
         }
     }
+
+    // function to convert base64 image to Blob object
 
     const convertImageToBlob = (data) => {
         const parts = data.split(";base64,");
@@ -72,8 +88,6 @@ const ConfirmDetails = () => {
 
     const submitData = async() => {
 
-        console.log(personalDetailsReducer)
-
         const {email, father_name, mother_name, martial_status, annual_income} = 
             personalDetailsReducer.data;
 
@@ -82,24 +96,34 @@ const ConfirmDetails = () => {
             
             const formData = new FormData();
 
+            // Append the personal details to the formData object
+
             formData.append('email', email);
             formData.append('father_name', father_name);
             formData.append('mother_name', mother_name);
             formData.append('martial_status', martial_status);
             formData.append('annual_income', annual_income);            
             
+            // Get the blob data from the documents - passDoc, sigDoc and panDoc
+
             const passBlob = convertImageToBlob(passDoc);
             const sigBlob = convertImageToBlob(sigDoc);
             const panBlob = convertImageToBlob(panDoc);
+
+            // Append the document data to the formData object with file names - profile.jpeg, signature.jpeg, pancard.jpeg
 
             formData.append('files', passBlob, "profile.jpeg");
             formData.append('files', sigBlob, "signature.jpeg");
             formData.append('files', panBlob, "pancard.jpeg");
 
+            // Set the header content type to 'multipart/form-data' to send files in body
+
             axiosClient.defaults.headers = 'multipart/form-data';
+
+            // Make a post request to the '/submit_details' endpoint with the formData object
+            
             await axiosClient.post('/submit_details', formData);
 
-            alert('Data Submitted Successfully');
 
         } catch (error) {
             console.log(error);
@@ -109,8 +133,13 @@ const ConfirmDetails = () => {
 
     const deleteData = () => {
 
+        // Dispatch the deletePersonalDetails and deleteDeclarationDetails actions
+
         dispatch(deletePersonalDetails());
         dispatch(deleteDeclarationDetails());
+
+        // Remove the saved data from local storage
+
         localStorage.removeItem('pan_card');
         localStorage.removeItem('signature');
         localStorage.removeItem('picture');
@@ -128,6 +157,8 @@ const ConfirmDetails = () => {
     }
 
     const editUserDetails = (e) => {
+
+        // Navigate to the '/declaration' page and pass the current state of declarationDetailsReducer as state
 
         navigate('/declaration', {state : declarationDetailsReducer});
 
