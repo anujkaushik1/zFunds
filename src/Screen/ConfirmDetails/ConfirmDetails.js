@@ -1,61 +1,49 @@
 import './ConfirmDetails.css'
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../Components/Header/Header';
-import CancelIcon from '@mui/icons-material/Cancel';
 import EditIcon from '@mui/icons-material/Edit';
 import Buttons from '../../Components/Buttons/Buttons';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deletePersonalDetails } from '../../Redux/actions/personalDetailsActions';
+import { deleteDeclarationDetails } from '../../Redux/actions/declarationDetailsActions';
+
 
 const ConfirmDetails = () => {
 
     const [panDoc, setPanDoc] = useState(null);
     const [sigDoc, setSigDoc] = useState(null);
+    const [passDoc, setPassDoc] = useState(null);
 
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
     const declarationDetailsReducer = useSelector(state => state.declarationDetailsReducer);
 
-    const uploadSignature = (e) => {
-        const file = e.target.files[0];
+    const dispatch = useDispatch();
 
-        if(checkFileSize(file)){
-            uploadFile(file, "signature");
-        }
 
-        setSigDoc(file);
-    }
+    useEffect(() => {
 
-    const uploadPanCard = (e) => {
-        const file = e.target.files[0];
+        const panImageData = localStorage.getItem('pan_card');
+        const sigImageData = localStorage.getItem('signature');
+        const passImageData = localStorage.getItem('picture');
 
-        if(checkFileSize(file)){
-            uploadFile(file, "pan_card");
+        setPanDoc(panImageData);
+        setSigDoc(sigImageData);
+        setPassDoc(passImageData);
 
-        }
-        setPanDoc(e.target.files[0]);
-    }
 
-    function checkFileSize(file){
-        if (file.size / (1024 * 1024) > 2) {   // file size greater than 2 mb
-            alert('File size is too large !')
-            return false;
-        }
-        return true;
-    }
+    }, [])
 
-    function uploadFile(file, name){
-        const reader =  new FileReader();
-        reader.onloadend = () => {
-            localStorage.setItem(name, reader.result);
-        }
-
-        reader.readAsDataURL(file);
-    }
-    const navigate = useNavigate();
     const nextScreen = (e) => {
-        
-        navigate('/')
+        deleteData();
     }
+
+    const deleteData = () => {
+
+        dispatch(deletePersonalDetails());
+        dispatch(deleteDeclarationDetails());
+    }
+
 
     return (
         <div>
@@ -103,7 +91,7 @@ const ConfirmDetails = () => {
                     <div className='block-footer'>
                         <p><span>Note:</span> You cannot edit above details as they are already verified through Digilocker.</p>
                     </div>
-                    
+
                 </div>
 
                 <div className='confirm-block'>
@@ -141,67 +129,40 @@ const ConfirmDetails = () => {
                 </div>
                 <div className='confirm-block'>
                     <h2>Documents</h2>
-                    <div className='row-container' style={{width:"100%"}}>
+                    <div className='row-container' style={{ width: "100%" }}>
                         <div className='col-container'>
                             <h1>Photo</h1>
                             <div className='pancard_upload'>
-                                <CancelIcon sx={{
-                                    color: '#01AA7B',
-                                    height: '15.5px',
-                                    width: '15.5px',
-                                    position: 'absolute',
-                                    top : '7px',
-                                    right : '20px'
-                                }} />
+                                <img className='image' src={passDoc} alt='Photo' />
+
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
                                     backgroundColor: '#CDD5DF'
-                                }}>
-                                    <input onChange={(e) => uploadPanCard(e)} accept='image/*' type="file" className='input' />
-                                </div>
+                                }}></div>
 
                             </div>
                         </div>
                         <div className='col-container'>
                             <h1>PAN Card</h1>
                             <div className='pancard_upload'>
-                                <CancelIcon sx={{
-                                    color: '#01AA7B',
-                                    height: '15.5px',
-                                    width: '15.5px',
-                                    position: 'absolute',
-                                    top : '7px',
-                                    right : '20px'
-                                }} />
+                                <img className='image' src={panDoc} alt='Photo' />
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
                                     backgroundColor: '#CDD5DF'
-                                }}>
-                                    <input onChange={(e) => uploadPanCard(e)} accept='image/*' type="file" className='input' />
-                                </div>
-
+                                }}></div>
                             </div>
                         </div>
                         <div className='col-container'>
                             <h1>Signature</h1>
                             <div className='pancard_upload'>
-                                <CancelIcon sx={{
-                                    color: '#01AA7B',
-                                    height: '15.5px',
-                                    width: '15.5px',
-                                    position: 'absolute',
-                                    top : '7px',
-                                    right : '20px'
-                                }} />
+                                 <img className='image' src={sigDoc} alt='Signature' />
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
                                     backgroundColor: '#CDD5DF'
-                                }}>
-                                    <input onChange={(e) => uploadPanCard(e)} accept='image/*' type="file" className='input' />
-                                </div>
+                                }}></div>
 
                             </div>
                         </div>

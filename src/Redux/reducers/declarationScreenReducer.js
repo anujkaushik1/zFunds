@@ -15,6 +15,11 @@ const declarationDetailsReducer = (state =  intialState, action) => {
                 ...state,
                 data : payload
             }
+
+        case declarationDetails.DELETE_DECLARATION_DETAILS:
+            return {
+                data : {}
+            }
         
         default:
             return state

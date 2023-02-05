@@ -6,3 +6,9 @@ export const addPersonalDetails = (data) => {
         payload : data
     }
 }
+
+export const deletePersonalDetails = () => {
+    return {
+        type : personalDetails.DELETE_PERSONAL_DETAILS
+    }
+}

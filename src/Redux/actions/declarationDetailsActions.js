@@ -6,3 +6,9 @@ export const addDeclarationDetails = (data) => {
         payload : data
     }
 }
+
+export const deleteDeclarationDetails = () => {
+    return {
+        type : declarationDetails.DELETE_DECLARATION_DETAILS
+    }
+}

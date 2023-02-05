@@ -12,7 +12,12 @@ const personalDetailsReducer = (state =  intialState, action) => {
             let payload = action.payload;
             return {
                 ...state,
-                ['data'] : payload
+                data : payload
+            }
+
+        case personalDetails.DELETE_PERSONAL_DETAILS : 
+            return {
+                data : {}
             }
         
         default:

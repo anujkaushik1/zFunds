@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
 }
-.blocks-container .confirm-block{
+
+.blocks-container .confirm-block {
     margin: 24px;
     background: #FFFFFF;
     border: 1px solid #8E959F;
@@ -13,16 +14,18 @@
     position: relative;
 }
 
-.blocks-container .confirm-block .edit-btn-container{
+.blocks-container .confirm-block .edit-btn-container {
     color: #03A87D;
     position: absolute;
     top: 20px;
     right: 20px;
 }
-.blocks-container .confirm-block .edit-btn-container svg{
+
+.blocks-container .confirm-block .edit-btn-container svg {
     font-size: 13px;
 }
-.blocks-container .confirm-block .edit-btn-container button{
+
+.blocks-container .confirm-block .edit-btn-container button {
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 500;
@@ -47,7 +50,7 @@
     color: #052F5F;
 }
 
-.blocks-container .confirm-block h3{
+.blocks-container .confirm-block h3 {
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 400;
@@ -71,21 +74,21 @@
     margin-top: 0px !important;
 }
 
-.blocks-container .confirm-block .empty-div{
+.blocks-container .confirm-block .empty-div {
     height: 62px;
 }
 
-.blocks-container .confirm-block .block-footer{
+.blocks-container .confirm-block .block-footer {
     position: absolute;
     background-color: #F0F3F5;
-    bottom:0;
+    bottom: 0;
     left: 0;
     right: 0;
     border-radius: 0 0 12px 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:  5px 10px;
+    padding: 5px 10px;
 }
 
 .blocks-container .confirm-block .block-footer p {
@@ -103,18 +106,19 @@
     font-weight: 900;
 }
 
-.blocks-container .confirm-block .row-container{
+.blocks-container .confirm-block .row-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     width: 85%;
 }
 
-.blocks-container .confirm-block .row-container .col-container .pancard_upload{
+.blocks-container .confirm-block .row-container .col-container .pancard_upload {
     width: 100px;
+    
 }
 
-.blocks-container .confirm-block .row-container .col-container h1{
+.blocks-container .confirm-block .row-container .col-container h1 {
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 600;
@@ -123,4 +127,10 @@
     text-align: center;
     letter-spacing: 0.02em;
     color: rgba(5, 47, 95, 0.6);
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
