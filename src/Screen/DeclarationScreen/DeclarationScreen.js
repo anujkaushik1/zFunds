@@ -9,48 +9,67 @@ import { addDeclarationDetails } from '../../Redux/actions/declarationDetailsAct
 
 function DeclarationScreen() {
 
+    // State to store the switch values
+
     const [switchValues, setSwitchValues] = useState({
-        indian_citizen : false,
-        indian_tax : false,
-        polically_exposed : false
+        indian_citizen: false,
+        indian_tax: false,
+        politically_exposed: false
     });
 
     const navigate = useNavigate();
+
     const dispatch = useDispatch();
 
+    // hook to access the personalDetailsReducer from the global state
+
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
-    const {data} = personalDetailsReducer;
+    const { data } = personalDetailsReducer;
 
     useEffect(() => {
-        
-        if(Object.keys(data).length === 0){
+        if (Object.keys(data).length === 0) {
+
+            // If the personal details have not been entered, navigate to the personal details page
+
             navigate('/personal-details');
         }
-
     }, []);
+
+    // Function to handle switch button changes
 
     const handleSwitchButtons = (e) => {
 
         let name = e.target.name;
         let value = switchValues[name];
 
-        setSwitchValues({...switchValues, [name] : !value});
-
+        // Update the switchValues state with the new value
+        setSwitchValues({ ...switchValues, [name]: !value });
     }
 
-    const nextScreen = () => {  
 
-        let {indian_citizen, indian_tax, polically_exposed} = switchValues;
+    const nextScreen = () => {
 
-        if(indian_tax && indian_citizen && polically_exposed){  
+        // Destructure the switchValues state
+
+        let { indian_citizen, indian_tax, politically_exposed } = switchValues;
+
+        // Check if all the switch buttons are checked
+
+        if (indian_tax && indian_citizen && politically_exposed) {
+
+            // Dispatch the addDeclarationDetails action with the switchValues
+
             dispatch(addDeclarationDetails(switchValues));
-            navigate('/confirm-details');
-        }
 
-        else{
+            // Navigate to the confirm details page
+
+            navigate('/confirm-details');
+        } else {
+            
+            // If not all switch buttons are checked, show an alert
+
             alert("Please confirm all options")
         }
-
     }
 
     return (

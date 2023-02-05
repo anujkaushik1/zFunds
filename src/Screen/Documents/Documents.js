@@ -9,85 +9,83 @@ import { useSelector } from 'react-redux';
 
 function Documents() {
 
+    // State for storing image URLs for each document
+
     const [panDoc, setPanDoc] = useState(null);
     const [sigDoc, setSigDoc] = useState(null);
     const [passDoc, setPassDoc] = useState(null);
 
 
     const navigate = useNavigate();
+
+    // hook for getting the data from personalDetailsReducer in the Redux store
+
     const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
     const { data } = personalDetailsReducer;
 
-    useEffect(() => {
+    // check if personal details data from previous screen exists, 
+    // if not navigate to the personal details page
 
+    useEffect(() => {
         if (Object.keys(data).length === 0) {
             navigate('/personal-details');
         }
+    }, [panDoc, sigDoc, passDoc]);
 
-
-    },[panDoc, sigDoc, passDoc]);
+    // navigate to the declaration page if all documents are uploaded, otherwise show error messages
 
     const nextScreen = () => {
         if (passDoc && panDoc && sigDoc)
             navigate('/declaration')
-
         else {
-
             if (!passDoc) alert('Please submit picture of yours')
-
             if (!panDoc) alert('Please submit PAN Card image')
-
             if (!sigDoc) alert('Please submit Signature image')
-
-
         }
-
     }
 
+    // upload and store the profile photo document
+
     const uploadPictureDoc = (e) => {
-
         const file = e.target.files[0];
-
         if (checkFileSize(file)) {
-            uploadFile(file, "picture");
+            uploadFile(file, " picture");
         }
         setPassDoc(URL.createObjectURL(file));
     }
 
+    // upload and store the signature document
+
     const uploadSignature = (e) => {
         const file = e.target.files[0];
-
         if (checkFileSize(file)) {
             uploadFile(file, "signature");
         }
-
         setSigDoc(URL.createObjectURL(file));
-
-
     }
+
+    // upload and store the PAN card document
 
     const uploadPanCard = (e) => {
         const file = e.target.files[0];
-
         if (checkFileSize(file)) {
             uploadFile(file, "pan_card");
-
         }
-
         setPanDoc(URL.createObjectURL(file));
-
     }
 
+    // check if the uploaded file size is greater than 2 MB
     function checkFileSize(file) {
-
-        if (file.size / (1024 * 1024) > 2) {   // file size greater than 2 mb
+        if (file.size / (1024 * 1024) > 2) {
             alert('File size is too large !')
             return false;
         }
-
         return true;
     }
 
+    //  function to upload and store file in local storage 
+    // date would be stored in format (data:image/png;base64,iVBORw0KG...)
+    
     function uploadFile(file, name) {
 
         const reader = new FileReader();
@@ -157,7 +155,7 @@ function Documents() {
                         }}>
 
                             {
-                                passDoc && 
+                                passDoc &&
                                 <img className='image' src={passDoc} alt='Photo' />
 
                             }
@@ -219,7 +217,7 @@ function Documents() {
                     </div>
 
                     <div className='pancard_upload'>
-                        <CancelIcon  sx={{
+                        <CancelIcon sx={{
                             color: '#01AA7B',
                             height: '15.5px',
                             width: '15.5px',
