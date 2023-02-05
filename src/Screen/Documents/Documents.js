@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../Components/Header/Header';
 import './Documents.css'
 import CancelIcon from '@mui/icons-material/Cancel';
 import Buttons from '../../Components/Buttons/Buttons';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ElevatorSharp } from '@mui/icons-material';
 
 function Documents() {
 
@@ -11,6 +13,16 @@ function Documents() {
     const [sigDoc, setSigDoc] = useState(null);
     const [passDoc, setPassDoc] = useState(null);
     const navigate = useNavigate();
+    const personalDetailsReducer = useSelector(state => state.personalDetailsReducer);
+    const {data} = personalDetailsReducer;
+
+    useEffect(() => {
+
+        if(Object.keys(data).length === 0){
+            navigate('/personal-details');
+        }
+
+    }, []);
 
     const nextScreen = () => {
         if (passDoc && panDoc && sigDoc)
