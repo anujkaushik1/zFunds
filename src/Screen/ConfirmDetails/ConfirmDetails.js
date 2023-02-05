@@ -23,10 +23,10 @@ const ConfirmDetails = () => {
 
     useEffect(() => {
 
-        const {data} = personalDetailsReducer;
+        const { data } = personalDetailsReducer;
 
 
-        if(Object.keys(data).length === 0){
+        if (Object.keys(data).length === 0) {
             navigate('/personal-details');
         }
 
@@ -42,7 +42,13 @@ const ConfirmDetails = () => {
     }, [])
 
     const nextScreen = (e) => {
+        alert('Data Submitted Successfully');
+
         deleteData();
+
+        navigate('/personal-details');
+
+
     }
 
     const deleteData = () => {
@@ -143,45 +149,48 @@ const ConfirmDetails = () => {
                         <div className='col-container'>
                             <h1>Photo</h1>
                             <div className='pancard_upload'>
-                                {
-                                    passDoc && 
-                                   <img className='image' src={passDoc} alt='Photo' />
-                                }
 
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
                                     backgroundColor: '#CDD5DF'
-                                }}></div>
+                                }}>
+                                    {
+                                        passDoc &&
+                                        <img className='image' src={passDoc} alt='Photo' />
+                                    }
+                                </div>
 
                             </div>
                         </div>
                         <div className='col-container'>
                             <h1>PAN Card</h1>
                             <div className='pancard_upload'>
-                                {
-                                    panDoc &&
-                                    <img className='image' src={panDoc} alt='Photo' />
-                                }
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
                                     backgroundColor: '#CDD5DF'
-                                }}></div>
+                                }}>
+                                    {
+                                        panDoc &&
+                                        <img className='image' src={panDoc} alt='Photo' />
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div className='col-container'>
                             <h1>Signature</h1>
                             <div className='pancard_upload'>
-                                {
-                                    sigDoc &&
-                                    <img className='image' src={sigDoc} alt='Signature' />
-                                }
                                 <div style={{
                                     height: '70%',
                                     width: '70%',
                                     backgroundColor: '#CDD5DF'
-                                }}></div>
+                                }}>
+                                    {
+                                        sigDoc &&
+                                        <img className='image' src={sigDoc} alt='Signature' />
+                                    }
+                                </div>
 
                             </div>
                         </div>
